@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #dome{
+            display: flex;
+            align-content: center;
+            justify-content:space-around;
+        }
+    </style>
+</head>
+<body>
+    <div id="dome">
+
+    </div>
+</body>
+</html>
+<!-- <script>
+function myFunc(){
+    var a = ['sss','ssse'];
+    var x = document.getElementById("dome");
+    x.innerHTML = Array.isArray(a)
+}
+myFunc()
+</script> -->
+
+<!-- <script>
+    //正方形
+//控制行数
+    for(var i = 0; i <= 5; i++){
+        //控制每行的星星数量
+        for(var j = 0; j <= 5; j++){
+            document.write('★');
+        }
+        document.write('<br/>');
+    }
+
+    //三角形
+    //控制有几行
+    for(var i = 0; i <= 5; i++){
+        //控制每一行有几个星星
+        for(var j = 0; j <= i; j++){
+            document.write('★')
+        }
+        document.write("<br/>")
+    }
+
+    for(var i = 1; i <= 9; i++){
+        for(var j = 1; j <= i; j++){
+            document.write(i+ "*" + j + "=" + i*j + '&nbsp')
+        }
+        document.write("<br/>")
+    }
+
+    //加强版乘法表
+    document.write("<table border='1' cellpadding='0' cellspacing='0'>");
+    for(var i = 1; i <= 9; i++){
+        document.write("<tr>");
+        for(var j = 1; j <= i; j++){
+            document.write("<td>");
+            document.write(i+"*"+j+"="+i*j);
+            document.write("</td>");
+        }
+        document.write("</tr>");
+    }
+    document.write("</table>")
+
+
+
+</script> -->
+<script>
+
+    for(var i=0;i <=5;i++){
+        for(var j=0;j<=5;j++){
+            document.write("✨");
+        }
+        document.write('<br/>')
+    }
+
+    for(var i=0;i<=5;i++){
+        for(var j=0;j<=i;j++){
+            document.write("✨");
+        }
+        document.write("<br/>")
+    }
+
+    document.write("<table border='1' cellpadding='0' cellspacing='0'>")
+    for (var i=1;i<=9;i++){
+        document.write("<tr>")
+        for(var j=1;j<=i;j++){
+            document.write("<td>")
+
+            document.write(j+"*"+i+"="+j*i+"&nbsp");
+            document.write("</td>")
+
+        }
+        document.write("<br/>");
+        document.write("</tr>")
+
+    }
+    document.write("</table>")
+
+</script>
