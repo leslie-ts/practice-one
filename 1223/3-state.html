@@ -8,7 +8,14 @@
     <script src="./base/react.min.js"></script>
     <script src="./base/react-dom.min.js"></script>
     <script src="./base/browser.min.js"></script>
-
+<style>
+    .show{
+        display:block;
+    }
+    .hidden{
+        display: none;
+    }
+</style>
 </head>
 <body>
 
@@ -22,21 +29,21 @@
 var Hello = React.createClass({
     getInitialState(){
         return {
-            doing:"学英语"
+            isShow:true
         }
     },
-    handle(){
-        let doing = this.state.doing=== "学英语"?"休息一会":"学英语"
-        this.setState({
-            doing
+    down(){
+        this.setState((state)=>{
+            return {
+                isShow:!state.isShow
+            }
         })
     },
     render(){
         return (
-           
            <div>
-               <button onClick={this.handle}>点击更改</button>
-                <p>我正在{this.state.doing}</p>
+                <button onClick={this.down}>down</button>
+                <ul className={this.state.isShow?"show":"hidden"}><li>1111111111</li><li>22222222</li></ul>
            </div>
         )
     }

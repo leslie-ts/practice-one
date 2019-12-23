@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./base/react.min.js"></script>
+    <script src="./base/react-dom.min.js"></script>
+    <script src="./base/browser.min.js"></script>
+
+</head>
+<body>
+
+    <div id="app">
+        
+    </div>
+
+</body>
+<script type="text/babel">
+
+var Hello = React.createClass({
+    getInitialState(){
+        return {
+            doing:"学英语"
+        }
+    },
+    getDefaultProps(){
+        return{
+            ser:"111"
+        }
+    },
+    handle(){
+        // let doing = this.state.doing=== "学英语"?"休息一会":"学英语"
+        // this.setState({
+        //     doing
+        // })
+        this.setState((prevState,prevPorps)=>{
+            console.log(prevState,prevPorps)
+            return {
+                doing:prevState.doing=== "学英语"?"休息一会":"学英语"
+            }
+        })
+    },
+    render(){
+        return (
+           
+           <div>
+               <button onClick={this.handle}>点击更改</button>
+                <p>我正在{this.state.doing}</p>
+           </div>
+        )
+    }
+})
+
+ReactDOM.render(<Hello ser={"122"}/>,app)
+
+
+</script>
+</html>
