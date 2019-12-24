@@ -86,7 +86,10 @@
                     <div>
                            {
                             color.map(item=>{
-                                return <button onClick={()=>{this.props.changeColor(item)}}>{item}</button>
+                                return <button onClick={this.props.changeColor.bind(this,item)}>{item}</button>
+                                
+                                
+                                // return <button onClick={()=>{this.props.changeColor(item)}}>{item}</button>
                             }) 
                            }
                     
