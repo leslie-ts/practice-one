@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="./base/react.min.js"></script>
+    <script src="./base/react-dom.min.js"></script>
+    <script src="./base/browser.min.js"></script>
+<style>
+  .panel button{
+       margin: 0px 5px;
+   }
+   .list-group{
+       width: 40%;
+       float: left;
+   }
+</style>
+</head>
+<body>
+
+    <div id="app" class="container"> 
+        <!-- <div class="panel panel-primary">
+             <div class="panel-heading">
+                 <button class="btn btn-default">北京</button>
+             </div>
+             <div class="panel-body">
+                 <ul class="list-group">
+                     <li class="list-group-item">111</li>
+                 </ul>
+             </div>
+        </div> -->
+     </div> 
+
+</body>
+ <!-- https://douban.uieee.com/v2/movie/in_theaters -->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/babel">
+    var Box = React.createClass({
+        getInitialState(){
+            return {
+                activeIndex:1
+            }
+        },
+        getDefaultProps(){
+            return {
+                citys:[
+                    {id:1,title:"北京"},
+                    {id:2,title:"上海"},
+                    {id:3,title:"大理"},
+                    {id:4,title:"内蒙古"},
+                    {id:5,title:"厦门"}
+                ]
+            }
+        },
+        changeColor(id){
+            if(id === this.state.activeIndex ) return false
+            this.setState({
+                activeIndex:id
+            })
+        },
+
+        // shouldComponentUpdate(nextProps,nextState){
+           //方法二
+        //     // if(nextState.activeIndex===this.state.activeIndex){
+        //     //     return false
+        //     // }
+        //     // return true
+
+        //     return nextState.activeIndex !== this.state.activeIndex
+        // },
+
+
+        renderCity(){
+            let {citys} = this.props;
+            let {activeIndex} = this.state;   
+            return citys.map(item=>{
+                return (
+                     <button onClick={()=>{this.changeColor(item.id)}} className={"btn btn-default "+(activeIndex===item.id?'btn-danger':'')}>{item.title}</button>
+                    )
+            })
+        },
+        getIndex(){
+            let {citys} = this.props;
+            let {activeIndex} = this.state;
+            for(var i =0;i < citys.length;i++){
+                if(citys[i].id === activeIndex){
+                    console.log(citys[i],activeIndex)
+                    return citys[i].title;
+                }
+            }   
+        },
+       
+        render(){    
+            return ( 
+                
+                <div className="panel panel-primary">
+                        <div className="panel-heading">
+                            {
+                               this.renderCity()
+                            }        
+                        </div>
+                    
+                        <Item city={this.getIndex()}/>
+                        
+                </div> 
+            )
+        }
+    })
+    var Item = React.createClass({
+        getInitialState(){
+           return {
+               movies: null
+           } 
+        },
+        componentWillReceiveProps(nextProps,nextState){
+            // if(nextProps.city==this.props.city) return false
+            this.getAjax(this.props.city)
+        },
+        componentDidMount(){
+           this.getAjax(this.props.city)
+        },
+        renderLi(){
+            let {movies} = this.state
+            if(!movies) return false
+            return movies.map(item=>{
+                return (
+                    <li className="list-group-item">{item.title}</li>
+                )
+            })
+        },
+        
+        getAjax(city){
+           
+            $.ajax({
+                url:"https://douban.uieee.com/v2/movie/in_theaters",
+                data:{
+                    city
+                },
+                dataType:"jsonp",
+                success:data=>{
+                    this.setState({
+                        movies:data.subjects
+                    })
+                }
+
+            })
+        },
+        render(){
+            return (
+                <div className="panel-body">
+                    <ul className="list-group">
+                        {
+                            this.renderLi()
+                        }
+                    </ul>
+                </div>
+            )
+        }
+    })
+
+ReactDOM.render(<Box/>,app)
+
+
+</script>
+</html>

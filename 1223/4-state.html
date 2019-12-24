@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./base/react.min.js"></script>
+    <script src="./base/react-dom.min.js"></script>
+    <script src="./base/browser.min.js"></script>
+<style>
+ 
+</style>
+</head>
+<body>
+
+    <div id="app">
+        
+    </div>
+
+</body>
+<script type="text/babel">
+
+var Father = React.createClass({
+    getInitialState(){
+        return {
+            name:"狗蛋"
+        }
+    },
+    clickme(){
+        
+       this.setState({
+            name:"李狗蛋"
+       })
+    },
+    render(){
+        return (
+           <div>
+           <p>父组件</p>
+                <button onClick={this.clickme}>改名字</button>
+                <hr/>
+                <Son name={this.state.name}/>
+           </div>
+        )
+    }
+})
+var Son = React.createClass({
+    
+    render(){
+        return (
+           <div>
+               我的名字是====>{this.props.name}
+           </div>
+        )
+    }
+})
+
+ReactDOM.render(<Father/>,app)
+
+
+</script>
+</html>
